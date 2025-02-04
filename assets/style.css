@@ -53,21 +53,47 @@ h2{
     color: var(--white);
 }
 
-@keyframes blink{
-    50%{
-        opacity: 0;
-    }
-    80%{
-        opacity: .5;
-    }
+/* Background Image Styles */
+.background{
+    background-image: url(../links/Blendedbounds.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    position: relative;
 }
 
-nav{
+/* Nav Styling */
+nav {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+}
+
+nav a {
     font-family: var(--font-1);
-    font-size: var(--size-2);
+    font-size: var(--size-3);
     font-weight: 800;
     color: var(--red);
-    text-align: center;
-    padding: 50px;
-    animation: blink is linear infinite;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    animation: blink .05s infinite;
+}
+
+nav a:hover {
+    background: var(--gray);
+}
+
+/* Blink Animation */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
