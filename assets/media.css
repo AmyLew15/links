@@ -1,6 +1,6 @@
 /* Start */
 body{
-    background-color: var(--gold);
+    background-color: var(--blue);
 }
 nav {
     position: absolute;
@@ -9,6 +9,16 @@ nav {
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 10;
+}
+
+nav a {
+    font-family: var(--font-1);
+    font-size: var(--size-3);
+    font-weight: 800;
+    color: var(--red);
+}
+nav a:hover {
+    background: var(--white);
 }
 
 /* Grid Styles */
@@ -25,10 +35,10 @@ section.media-grid {
   
   /* Card Styles */
   .card {
-    background-color: var(--white);
+    background-color: var(--red);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 6px 12px var(--gray);
+    box-shadow: 0 6px 12px var(--teal);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -54,10 +64,9 @@ section.media-grid {
   .caption{
     font-size: var(--base-size);
     font-family: var(--font-1);
-    font-weight: 400;
+    font-weight: 500;
     color: var(--black);
     padding-top: 30px;
     margin: 0;
     text-align: center;
   }
-  

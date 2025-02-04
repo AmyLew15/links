@@ -23,11 +23,11 @@
 --black:#010308;
 --white: #f6f1e9;
 --red: #eb0f21;
---orange: #da7032;
 --gold: #dc8f00;
---blue: #18bcc8;
+--teal: #63bac1;
+--blue: #477e87;
 --green: #033332;
---gray: #433e39;
+--gray: #363a3a;
 
 }
 
@@ -42,7 +42,7 @@ h1{
     font-family: var(--font-1);
     font-size: var(--size-3);
     font-weight: 600;
-    color: var(--red);
+    color: var(--gold);
     margin: 0px;
 }
 
