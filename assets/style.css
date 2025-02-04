@@ -53,4 +53,21 @@ h2{
     color: var(--white);
 }
 
+@keyframes blink{
+    50%{
+        opacity: 0;
+    }
+    80%{
+        opacity: .5;
+    }
+}
 
+nav{
+    font-family: var(--font-1);
+    font-size: var(--size-2);
+    font-weight: 800;
+    color: var(--red);
+    text-align: center;
+    padding: 50px;
+    animation: blink is linear infinite;
+}
