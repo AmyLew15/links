@@ -21,13 +21,13 @@
 /* Color Palette */
 
 --black:#010308;
---white: #ffeed8;
+--white: #f6f1e9;
 --red: #eb0f21;
 --orange: #da7032;
 --gold: #dc8f00;
---blue: #1d939c;
+--blue: #18bcc8;
 --green: #033332;
---gray: #3d3935;
+--gray: #433e39;
 
 }
 
@@ -42,7 +42,7 @@ h1{
     font-family: var(--font-1);
     font-size: var(--size-3);
     font-weight: 600;
-    color: var(--white);
+    color: var(--red);
     margin: 0px;
 }
 
