@@ -31,3 +31,24 @@
 
 }
 
+/* Mobile Styles */
+
+header{
+    padding: var(--size-2);
+    background-color: var(--black);
+    }
+
+h1{
+    font-family: var(--font-1);
+    font-size: var(--size-3);
+    font-weight: 600;
+    margin: 0px;
+}
+
+h2{
+    font-family: var(--font-1);
+    font-size: var(--size-2);
+    font-weight: 400;
+}
+
+
