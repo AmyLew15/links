@@ -1,1 +1,1 @@
-# links
+This is a project for my Typography and Interaction course for the Spring 2025 semester. I am drawing from a collection of media from Are.na curated by Devansh Khajanchi surrounding the Liminality in Life. I have created a website that evokes this idea and showcases the collection in a new way. Thank you for taking a gander!
