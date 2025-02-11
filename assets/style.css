@@ -88,6 +88,79 @@ nav a:hover {
     background: var(--gray);
 }
 
+/* Start */
+body{
+    background-color: var(--blue);
+}
+nav {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+}
+
+nav a {
+    font-family: var(--font-1);
+    font-size: var(--size-3);
+    font-weight: 800;
+    color: var(--red);
+}
+nav a:hover {
+    background: var(--white);
+}
+
+/* Grid Styles */
+section.media-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    grid-template-rows: 200px; 
+    gap: calc(2*var(--base-size));
+    padding: 20px;
+    padding-top: 40px;
+    justify-items: center;
+    align-items: center;
+  }
+  
+  /* Card Styles */
+  .card {
+    background-color: var(--red);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px var(--teal);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    width: 180px;
+    height: 240px;
+    position: relative;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 14px;
+  }
+
+  .caption{
+    font-size: var(--base-size);
+    font-family: var(--font-1);
+    font-weight: 500;
+    color: var(--black);
+    padding-top: 30px;
+    margin: 0;
+    text-align: center;
+  }
+  
 /* Blink Animation */
 @keyframes blink {
     0%, 100% {
