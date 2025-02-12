@@ -1,13 +1,14 @@
 // This allows us to process/render the descriptions, which are in Markdown!
 // More about Markdown: https://en.wikipedia.org/wiki/Markdown
+
 let markdownIt = document.createElement('script')
 markdownIt.src = 'https://cdn.jsdelivr.net/npm/markdown-it@14.0.0/dist/markdown-it.min.js'
 document.head.appendChild(markdownIt)
 
-
 // https://api.are.na/v2/channels/liminality-in-life
+
 // Okay, Are.na stuff!
-let channelSlug = 'liminality-in-life' // The “slug” is just the end of the URL
+let channelSlug = 'liminality-in-life'
 
 
 
@@ -15,15 +16,15 @@ let channelSlug = 'liminality-in-life' // The “slug” is just the end of the 
 let placeChannelInfo = (data) => {
 	// Target some elements in your HTML:
 	let channelTitle = document.getElementById('channel-title')
-	//let channelDescription = document.querySelector('#channel-description')
-	//let channelCount = document.querySelector('#channel-count')
-	//let channelLink = document.querySelector('#channel-link')
+	let channelDescription = document.querySelector('#channel-description')
+	let channelCount = document.querySelector('#channel-count')
+	let channelLink = document.querySelector('#channel-link')
 
 	// Then set their content/attributes to our data:
 	channelTitle.innerHTML = data.title
-	//channelDescription.innerHTML = window.markdownit().render(data.metadata.description) // Converts Markdown → HTML
-	//channelCount.innerHTML = data.length
-	//channelLink.href = `https://www.are.na/channel/${channelSlug}`
+	channelDescription.innerHTML = window.markdownit().render(data.metadata.description) // Converts Markdown → HTML
+	channelCount.innerHTML = data.length
+	channelLink.href = `https://www.are.na/channel/${channelSlug}`
 }
 
 
@@ -37,62 +38,85 @@ let renderBlock = (block) => {
 	if (block.class == 'Link') {
 		let linkItem =
 			`
-			<li>
+			<div class="block">
 					<img src="${ block.image.original.url }">
 				<h3>${ block.title }</h3>
 
-			</li>
+			<div class="overlay">
+				<p>${block.title}</p>
+				<p>${block.description}</p>
+			</div>
+			</div>
+
 			`
 		channelBlocks.insertAdjacentHTML('beforeend', linkItem)
+		console.log('link')
 	}
 
 	// Images!
 	else if (block.class == 'Image') {
-		// …up to you!
+		let imageitem=
+		<div class="block"
+			img src="${block.image.orginial.url}">
+			<div class="overlay">
+			<p>${block.title}</p>
+			<p>${block.description}</p>
+		</div>
+		</div>
+		`;
+
+		channelBlocks.insertAdjacentHTML('beforeend', imageItem);;
 	}
 
 	// Text!
 	else if (block.class == 'Text') {
-		// …up to you!
+		let textItem = `
+		<div class="block">
+			<p>${block.content}</p>
+			<p>${block.description_html}</p>
+		</div>
+		`;
+		channelBlocks.insertAdjacentHTML('beforeend', textItem);
+		console.log('text')
 	}
 
 	// Uploaded (not linked) media…
-	else if (block.class == 'Attachment') {
-		let attachment = block.attachment.content_type // Save us some repetition
+	//else if (block.class == 'Attachment') {
+		//let attachment = block.attachment.content_type // Save us some repetition
 
 		// Uploaded videos!
-		if (attachment.includes('video')) {
+		//if (attachment.includes('video')) {
 			// …still up to you, but we’ll give you the `video` element:
-			let videoItem =
-				`
-				<li>
-					<p><em>Video</em></p>
-					<video controls src="${ block.attachment.url }"></video>
-				</li>
-				`
-			channelBlocks.insertAdjacentHTML('beforeend', videoItem)
+			//let videoItem =
+				//`
+				//<li>
+					//<p><em>Video</em></p>
+					//<video controls src="${ block.attachment.url }"></video>
+				//</li>
+				//`
+			//channelBlocks.insertAdjacentHTML('beforeend', videoItem)
 			// More on video, like the `autoplay` attribute:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
-		}
+		//}
 
 		// Uploaded PDFs!
-		else if (attachment.includes('pdf')) {
+		//else if (attachment.includes('pdf')) {
 			// …up to you!
-		}
+		//}
 
 		// Uploaded audio!
-		else if (attachment.includes('audio')) {
+		//else if (attachment.includes('audio')) {
 			// …still up to you, but here’s an `audio` element:
-			let audioItem =
-				`
-				<li>
-					<p><em>Audio</em></p>
-					<audio controls src="${ block.attachment.url }"></video>
-				</li>
-				`
-			channelBlocks.insertAdjacentHTML('beforeend', audioItem)
+			//let audioItem =
+				//`
+				//<li>
+					//<p><em>Audio</em></p>
+					//<audio controls src="${ block.attachment.url }"></video>
+				//</li>
+				//`
+			//channelBlocks.insertAdjacentHTML('beforeend', audioItem)
 			// More on audio: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
-		}
+		//}
 	}
 
 	// Linked media…
@@ -104,10 +128,9 @@ let renderBlock = (block) => {
 			// …still up to you, but here’s an example `iframe` element:
 			let linkedVideoItem =
 				`
-				<li>
-					<p><em>Linked Video</em></p>
-					${ block.embed.html }
-				</li>
+				<div class="block">
+					${block.embed.html}
+				</div>
 				`
 			channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
 			// More on iframe: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
@@ -115,9 +138,18 @@ let renderBlock = (block) => {
 
 		// Linked audio!
 		else if (embed.includes('rich')) {
-			// …up to you!
+			let richItem =
+				`
+			<div class="block">
+				<audio controls src="${block.rich.url}"></video>
+			</div>
+			`
+			channelBlocks.insertAdjacentHTML('beforeend', richItem)
 		}
+
+		console.log('media')
 	}
+
 }
 
 
@@ -141,12 +173,12 @@ let renderBlock = (block) => {
 fetch(`https://api.are.na/v2/channels/${channelSlug}?per=100`, { cache: 'no-store' })
 	.then((response) => response.json()) // Return it as JSON data
 	.then((data) => { // Do stuff with the data
-		console.log(data) // Always good to check your response!
+		console.log("Data",data) // Always good to check your response!
 		placeChannelInfo(data) // Pass the data to the first function
 
 		// Loop through the `contents` array (list), backwards. Are.na returns them in reverse!
 		data.contents.reverse().forEach((block) => {
-			console.log(block) // The data for a single block
+			//console.log(block) // The data for a single block
 			renderBlock(block) // Pass the single block data to the render function
 		})
 
