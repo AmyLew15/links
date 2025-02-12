@@ -5,7 +5,7 @@ markdownIt.src = 'https://cdn.jsdelivr.net/npm/markdown-it@14.0.0/dist/markdown-
 document.head.appendChild(markdownIt)
 
 
-
+// https://api.are.na/v2/channels/liminality-in-life
 // Okay, Are.na stuff!
 let channelSlug = 'liminality-in-life' // The “slug” is just the end of the URL
 
@@ -14,7 +14,7 @@ let channelSlug = 'liminality-in-life' // The “slug” is just the end of the 
 // First, let’s lay out some *functions*, starting with our basic metadata:
 let placeChannelInfo = (data) => {
 	// Target some elements in your HTML:
-	let channelTitle = document.querySelector('#channel-title')
+	let channelTitle = document.getElementById('channel-title')
 	//let channelDescription = document.querySelector('#channel-description')
 	//let channelCount = document.querySelector('#channel-count')
 	//let channelLink = document.querySelector('#channel-link')

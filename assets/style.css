@@ -22,6 +22,7 @@
 
 --black:#010308;
 --white: #f6f1e9;
+--beige: #f3e6d2;
 --red: #eb0f21;
 --gold: #dc8f00;
 --teal: #63bac1;
@@ -32,141 +33,121 @@
 }
 
 /* Mobile Styles */
+body{
+	background-color: var(--white);
+	text-wrap: balance;
+	scroll-behavior: smooth;
+}
 
 header{
-    padding: var(--size-2);
-    background-color: var(--green);
-    }
+	z-index: 1000;
+}
+
+.container{
+	max-width: 375px;
+	margin: 0 auto;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
 
 h1{
-    font-family: var(--font-1);
-    font-size: var(--size-3);
-    font-weight: 600;
-    color: var(--gold);
-    margin: 0px;
+	font-family: var(--font-1);
+	font-size: var(--size-1);
+	font-weight: 600;
+	color: var(--green);
+	margin: calc(var(--base-size));
 }
 
 h2{
-    font-family: var(--font-1);
-    font-size: var(--size-2);
-    font-weight: 400;
-    color: var(--white);
+	font-family: var(--font-1);
+	font-size: var(--base-size);
+	font-weight: 400;
+	color: var(--green);
+	margin: calc(var(--base-size));
 }
 
-/* Background Image Styles */
-.background{
-    background-image: url(../links/Blendedbounds.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100%;
-    position: relative;
-}
-
-/* Nav Styling */
-nav {
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 10;
-}
-
-nav a {
-    font-family: var(--font-1);
-    font-size: var(--size-3);
-    font-weight: 800;
-    color: var(--red);
-    text-decoration: none;
-    padding: 15px 30px;
-    border-radius: 5px;
-    animation: blink .05s infinite;
-}
-
-nav a:hover {
-    background: var(--gray);
-}
-
-/* Start */
-body{
-    background-color: var(--blue);
-}
-nav {
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 10;
-}
-
-nav a {
-    font-family: var(--font-1);
-    font-size: var(--size-3);
-    font-weight: 800;
-    color: var(--red);
-}
-nav a:hover {
-    background: var(--white);
+h3{
+	font-family: var(--font-1);
+	font-size: var(--base-size);
+	font-weight: 300;
+	color: var(--blue);
 }
 
 /* Grid Styles */
 section.media-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    grid-template-rows: 200px; 
-    gap: calc(2*var(--base-size));
-    padding: 20px;
-    padding-top: 40px;
-    justify-items: center;
-    align-items: center;
-  }
-  
+	display: grid;
+	grid-template-columns: repeat(1, 1fr); 
+	gap: calc(var(--base-size));
+	padding: 0;
+	margin: 0;
+	margin-top: 20px;
+	width: 100%;
+	justify-items: center;
+	align-items: start;
+}
+
   /* Card Styles */
   .card {
-    background-color: var(--red);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 12px var(--teal);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 10px;
-    width: 180px;
-    height: 240px;
-    position: relative;
+	background-color: var(--beige);
+	border-radius: 12px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 6px 12px var(--teal);
+	align-items: center;
+	padding: 10px;
+	margin: 0 auto;
+	position: relative;
+	box-sizing: border-box;
+	transition: 0.3s ease;
+	width: 100%;
+	max-width: 180px;
+	height: 240px;
   }
   
   .card:hover {
-    transform: scale(1.05);
+	transform: scale(1.05);
   }
   
-  .card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-    margin-bottom: 14px;
+  .card image {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
   }
 
   .caption{
-    font-size: var(--base-size);
-    font-family: var(--font-1);
-    font-weight: 500;
-    color: var(--black);
-    padding-top: 30px;
-    margin: 0;
-    text-align: center;
+	font-size: var(--base-size);
+	font-family: var(--font-1);
+	font-weight: 300;
+	color: var(--black);
+	margin-top: 10px;
   }
-  
-/* Blink Animation */
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
+
+/*Footer*/
+
+footer{
+	background-color: var(--beige);
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 40px;
+	padding-left: 20px;
 }
+
+footer h3{
+	font-family: var(--font-1);
+	font-size: var(--base-size);
+	font-weight: 400;
+	color: var(--green);
+	padding: 20px;
+}
+
+/* Blink Animation 
+@keyframes blink {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}*/
