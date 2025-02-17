@@ -44,7 +44,7 @@ header{
 }
 
 .container{
-	max-width: 375px;
+	max-width: 100%;
 	margin: 0 auto;
 	padding: 0 20px;
 	box-sizing: border-box;
@@ -77,15 +77,15 @@ h3{
 .blocks {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-	gap: var(--size-1); 
-	padding: var(--size-1);
+	gap: var(--base-size); 
+	padding: var(--base-size);
 	place-content: center; 
 	justify-content: center;
 }
 
 .blocks li{
-	max-width: 350px;
-	padding: var(--size-1);
+	max-width: 100%;
+	padding: var(--base-size);
 	border: 1px var(--white) solid;
 	display: flex;
 	flex-direction: column;
@@ -148,3 +148,32 @@ footer h3{
 		opacity: 0;
 	}
 }*/
+
+/*Media Queries*/
+@media (min-width: 600){
+	.blocks{
+		grid-template-columns: repeat(2,1fr);
+	}
+
+	h1{
+		font-size: var(--size-3);
+	}
+
+	h2{
+		font-size: var(--size-2);
+	}
+}
+
+@media (min-width: 1024px){
+	.blocks{
+		grid-template-columns: repreat(5,1fr);
+	}
+
+	h1{
+		font-size: var(--size-4);
+	}
+
+	h2{
+		font-size: var(--size-3);
+	}
+}
