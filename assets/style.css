@@ -93,6 +93,25 @@ h3{
 	background-color: var(--green);
 	width: 100%;
 	height: 100%;
+	position: relative;
+}
+
+.blocks li img,
+.blocks li video,
+.blocks li iframe,
+.blocks li audio {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	filter: blur(10px);
+	transition: filter 0.3s ease;
+}
+
+.blocks li:hover img,
+.blocks li:hover video,
+.blocks li:hover iframe,
+.blocks li:hover audio {
+	filter:blur(0);
 }
 
 .block-title{
