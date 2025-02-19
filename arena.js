@@ -32,8 +32,6 @@ let placeChannelInfo = (data) => {
 let renderBlock = (block) => {
 	// To start, a shared `ul` where we’ll insert all our blocks
 	let channelBlocks = document.getElementById('channel-blocks')
-
-
 	
 	// Links!
 	if (block.class == 'Link') {
@@ -45,7 +43,6 @@ let renderBlock = (block) => {
 			<h3 class="block-title">${block.title}</h3>
 		</li>
 		`
-		
 		channelBlocks.insertAdjacentHTML('beforeend', linkItem)
 		
 	}
@@ -133,25 +130,26 @@ let renderBlock = (block) => {
 
 	}
 
-	// Linked media…
-	else if (block.class == 'Media') {
-		let embed = block.embed.type
-
-		// Linked video!
-		if (embed.includes('video')) {
-			// …still up to you, but here’s an example `iframe` element:
-			let linkedVideoItem =
-				`
+		 // Linked Media (YouTube)
+		 else if (block.class == 'Media') {
+			let embed = block.embed.type
+	
+			// Linked video !
+			if (embed.includes('video')) {
+				// Extract the YouTube thumbnail (if it's a YouTube link)
+				let youtubeId = block.embed.html.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
+				let thumbnailUrl = youtubeId ? `https://img.youtube.com/vi/${youtubeId[1]}/0.jpg` : ''; // Extracting the thumbnail
+	
+				let linkedVideoItem = `
 				<li>
-					${ block.embed.html }
+					<img src="${thumbnailUrl}" alt="Video Thumbnail" class="video-thumbnail">
+					${block.embed.html}
 					<h3 class="block-title">${block.title}</h3>
-				</li>
-				`
-			channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
-			// More on iframe: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
+				</li>`
+				channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
+					// More on iframe: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
+			}
 		}
-
-	}
 }
 
 

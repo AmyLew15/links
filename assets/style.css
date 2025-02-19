@@ -107,6 +107,11 @@ h3{
 	transition: filter 0.3s ease;
 }
 
+.blocks li.audio-block audio,
+.blocks li.video-block video {
+	filter: none;
+}
+
 .blocks li:hover img,
 .blocks li:hover video,
 .blocks li:hover iframe,
@@ -129,8 +134,12 @@ h3{
 }
 
 .audio-block audio {
-	width: 200px;
-	height: 200px;
+	width: 100%;
+	max-width: 300px;
+	height: auto;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
 }
 
 .pdf-description{
