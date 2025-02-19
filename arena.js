@@ -119,6 +119,9 @@ let renderBlock = (block) => {
 			let audioItem =
 				`
 				<li class="audio-block">
+					<picture id="thumbnail">
+						<img src="${block.image.original.url}">
+					</picture>
 					<audio controls src="${block.attachment.url}"></audio>
 					<h3 class="block-title">${ block.title }</h3>
 				</li>
@@ -140,13 +143,13 @@ let renderBlock = (block) => {
 				let youtubeId = block.embed.html.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
 				let thumbnailUrl = youtubeId ? `https://img.youtube.com/vi/${youtubeId[1]}/0.jpg` : ''; // Extracting the thumbnail
 	
-				let linkedVideoItem = `
-				<li>
-					<img src="${thumbnailUrl}" alt="Video Thumbnail" class="video-thumbnail">
-					${block.embed.html}
-					<h3 class="block-title">${block.title}</h3>
-				</li>`
-				channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
+				//let linkedVideoItem = `
+				//<li>
+					//<img src="${thumbnailUrl}" alt="Video Thumbnail" class="video-thumbnail">
+					//${block.embed.html}
+					//<h3 class="block-title">${block.title}</h3>
+				//</li>`
+				//channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
 					// More on iframe: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
 			}
 		}
