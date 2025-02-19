@@ -141,7 +141,7 @@ let renderBlock = (block) => {
 			if (embed.includes('video')) {
 				// Extract the YouTube thumbnail (if it's a YouTube link)
 				let youtubeId = block.embed.html.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
-				let thumbnailUrl = youtubeId ? `https://img.youtube.com/vi/${youtubeId[1]}/0.jpg` : ''; // Extracting the thumbnail
+				//let thumbnailUrl = youtubeId ? `https://img.youtube.com/vi/${youtubeId[1]}/0.jpg` : ''; // Extracting the thumbnail
 	
 				//let linkedVideoItem = `
 				//<li>
