@@ -35,8 +35,27 @@
 /* Mobile Styles */
 body{
 	background-color: var(--green);
-	text-wrap: balance;
 	scroll-behavior: smooth;
+}
+
+#background-image{
+	position: fixed;
+	z-index: -1;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+}
+
+#background-image img{
+	position: absolute;
+	object-fit: cover;
+	object-position: center;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	overflow-x: hidden;
 }
 
 header{
@@ -48,6 +67,12 @@ header{
 	margin: 0 auto;
 	padding: 0 20px;
 	box-sizing: border-box;
+	position: relative;
+}
+
+h1,h2,h3 {
+	position: relative;
+	z-index: 10;
 }
 
 h1{
@@ -56,7 +81,44 @@ h1{
 	font-weight: 600;
 	color: var(--blue);
 	margin: calc(var(--base-size));
+	animation: flicker 1.5s infinite alternate;
 }
+
+.neon{
+	color: var(--white);
+		text-shadow:
+			0 0 7px var(--white),
+			0 0 10px var(--red),
+			0 0 21px var(--red),
+			0 0 42px var(--red),
+			0 0 82px var(--red),
+			0 0 92px var(--red),
+			0 0 102px var(--red),
+			0 0 151px var(--red);
+}
+
+@keyframes flicker {
+	
+	0%, 18%, 22%, 25%, 53%, 57%, 100% {
+  
+		text-shadow:
+		0 0 4px var(--white),
+		0 0 11px var(--red),
+		0 0 19px var(--red),
+		0 0 40px var(--red),
+		0 0 80px var(--red),
+		0 0 90px var(--red),
+		0 0 100px var(--red),
+		0 0 150px var(--red);
+	}
+	
+	20%, 24%, 55% {        
+		text-shadow: none;
+	}    
+  }
+
+  /* link to fancy neon code*/
+  /*https://css-tricks.com/how-to-create-neon-text-with-css/*/
 
 h2{
 	font-family: var(--font-1);
@@ -65,6 +127,20 @@ h2{
 	color: var(--blue);
 	margin: calc(var(--base-size));
 }
+
+.neon2{
+	color: var(--white);
+		text-shadow:
+			0 0 7px var(--white),
+			0 0 10px var(--white),
+			0 0 21px var(--white),
+			0 0 42px var(--white),
+			0 0 82px var(--white),
+			0 0 92px var(--white),
+			0 0 102px var(--white),
+			0 0 151px var(--white);
+}
+
 
 h3{
 	font-family: var(--font-1);
@@ -178,16 +254,6 @@ a{
 	color: var(--red);
 	padding: 20px;
 }
-
-/* Blink Animation 
-@keyframes blink {
-	0%, 100% {
-		opacity: 1;
-	}
-	50% {
-		opacity: 0;
-	}
-}*/
 
 /*Media Queries*/
 @media (min-width: 600){
