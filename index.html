@@ -13,20 +13,31 @@
 		<link rel="stylesheet" href="https://use.typekit.net/wjt6dgk.css">
 
 	</head>
+
 	<body>
 		<div id="background-image">
 			<img src="assets/360_F_515748798_LAQfYPN82VHBzzhkCYNZL7JJzCjfX8Xb.jpg" alt="Background Image"> 
 		</div>
 
 		<header>
-			<h1 class="neon">Liminality in Life</h1>
-			<h2 class="neon2">A space somewhere in between the past and the present, us and them, real and surreal, a space between you and me.</h2>
+			<h1 class="neon" id="channel-title">Liminality in Life</h1>
+			<h2 class="neon2" id="channel-description">A space somewhere in between the past and the present, us and them, real and surreal, a space between you and me.</h2>
 		</header>
 
-		<!--Block Grid-->
-		<section class="blocks">
-			<ul id="channel-blocks"></ul>
-		</section>
+		<!--Nav-->
+			<nav>
+				<button class="nav-button" id="show-all-button">All</button>
+				<button class="nav-button" id="show-image-button">Images</button>
+				<button class="nav-button" id="show-video-button">Videos</button>
+				<button class="nav-button" id="show-link-button">Texts</button>
+				<button class="nav-button" id="show-audio-button">Sounds</button>
+			</nav>
+
+			<!--Block Grid-->
+			<section class="block-grid">
+				<ul class="blocks" id="channel-blocks"></ul>
+				<p><span id="channel-count"></span>Inbetweens, here and there.</p>
+			</section>
 
 		<footer>
 			<p>Curated by Devansh Khajanchi and Amy Lewis © 2025</p>

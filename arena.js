@@ -4,8 +4,11 @@ let markdownIt = document.createElement('script')
 markdownIt.src = 'https://cdn.jsdelivr.net/npm/markdown-it@14.0.0/dist/markdown-it.min.js'
 document.head.appendChild(markdownIt)
 
+
+
 // Okay, Are.na stuff!
 let channelSlug = 'liminality-in-life' // The “slug” is just the end of the URL
+
 
 // First, let’s lay out some *functions*, starting with our basic metadata:
 let placeChannelInfo = (data) => {
@@ -17,7 +20,7 @@ let placeChannelInfo = (data) => {
 	// let channelLink = document.getElementById('channel-link')
 
 	// Then set their content/attributes to our data:
-	//channelTitle.innerHTML = data.title
+	channelTitle.innerHTML = data.title
 	// channelDescription.innerHTML = window.markdownit().render(data.metadata.description) // Converts Markdown → HTML
 	// channelCount.innerHTML = data.length
 	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
@@ -27,7 +30,6 @@ let placeChannelInfo = (data) => {
 
 // Then our big function for specific-block-type rendering:
 let renderBlock = (block) => {
-	console.log(block);
 	// To start, a shared `ul` where we’ll insert all our blocks
 	let channelBlocks = document.getElementById('channel-blocks')
 	
@@ -36,7 +38,7 @@ let renderBlock = (block) => {
 		
 		let linkItem =
 		`
-		<li class="link-block">
+		<li>
 			<img src="${block.image.original.url}">
 			<h3 class="block-title">${block.title}</h3>
 		</li>
@@ -77,16 +79,16 @@ let renderBlock = (block) => {
 	// Uploaded (not linked) media…
 	else if (block.class == 'Attachment') {
 		let attachment = block.attachment.content_type // Save us some repetition
-		console.log('Attachment type:', attachment);
 
 		// Uploaded videos!
 		if (attachment.includes('video')) {
+			// …still up to you, but we’ll give you the `video` element:
 			let videoItem =
 				`
-				<li class="video-block">
+				<li class="video-block>
 					<video controls src="${ block.attachment.url }"></video>
-					<h3 class="block-title">${block.title}</h3>
 				</li>
+				<h3 class="block-title">${block.title}</h3>
 				`
 			channelBlocks.insertAdjacentHTML('beforeend', videoItem)
 			// More on video, like the `autoplay` attribute:
@@ -100,7 +102,7 @@ let renderBlock = (block) => {
 
 			let PdfItem =
 				`
-				<li class="pdf-block">
+				<li>
 					<figure class="pdf-block">
 						<img src="${ block.image.thumb.url }">
 						<h3 class="block-title">${ block.title }</h3>
@@ -141,18 +143,34 @@ let renderBlock = (block) => {
 				let youtubeId = block.embed.html.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
 				//let thumbnailUrl = youtubeId ? `https://img.youtube.com/vi/${youtubeId[1]}/0.jpg` : ''; // Extracting the thumbnail
 	
-				let linkedVideoItem = `
-				<li class="media-block">
-					<img src="${thumbnailUrl}" alt="Video Thumbnail" class="video-thumbnail">
-					${block.embed.html}
-					<h3 class="block-title">${block.title}</h3>
-				</li>
-				`
-				channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
+				//let linkedVideoItem = `
+				//<li>
+					//<img src="${thumbnailUrl}" alt="Video Thumbnail" class="video-thumbnail">
+					//${block.embed.html}
+					//<h3 class="block-title">${block.title}</h3>
+				//</li>`
+				//channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
 					// More on iframe: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
 			}
 		}
 }
+
+
+
+// It‘s always good to credit your work:
+// let renderUser = (user, container) => { // You can have multiple arguments for a function!
+// 	let userAddress =
+// 		`
+// 		<address>
+// 			<img src="${ user.avatar_image.display }">
+// 			<h3>${ user.first_name }</h3>
+// 			<p><a href="https://are.na/${ user.slug }">Are.na profile ↗</a></p>
+// 		</address>
+// 		`
+// 	container.insertAdjacentHTML('beforeend', userAddress)
+// }
+
+
 
 // Now that we have said what we can do, go get the data:
 fetch(`https://api.are.na/v2/channels/${channelSlug}?per=100`, { cache: 'no-store' })

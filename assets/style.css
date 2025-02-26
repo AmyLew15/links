@@ -5,7 +5,6 @@
 --font-1: "neue-haas-grotesk-display-pro", sans-serif;
 
 /* Font Sizes */
-
 --base-size: 16px;
 --size-1: 24px;
 --size-2: 32px;
@@ -19,31 +18,30 @@
 --size-10: 160px;
 
 /* Color Palette */
-
 --black:#010308;
 --white: #f6f1e9;
 --beige: #f3e6d2;
 --red: #eb0f21;
 --gold: #dc8f00;
---teal: #63bac1;
---blue: #477e87;
+--blue: #1b5058;
 --green: #011e1e;
---gray: #363a3a;
 
 }
 
 /* Mobile Styles */
 body{
-	position: relative;
+	background-color: var(--green);
 	text-wrap: balance;
 	scroll-behavior: smooth;
 }
 
 body::before{
 content: "";
-position: absolute;
+position: fixed;
 top: 0;
 left: 0;
+right: 0;
+bottom: 0;
 width: 100%;
 height: 100%;
 background-color: var(--green);
@@ -54,6 +52,8 @@ z-index: -1;
 #background-image img{
 	position: fixed;
 	z-index: -2;
+	object-fit: cover;
+	object-fit: center;
 	width: 100%;
 	height: 100%;
 	left: 0;
@@ -62,31 +62,23 @@ z-index: -1;
 }
 
 header{
-	z-index: 10;
 	position: relative;
 	padding-top: var(--size-2);
-	padding-bottom: var(--size-2);
 }
 
 .container{
-	max-width: 100%;
 	margin: 0 auto;
 	padding: 10px;
-	box-sizing: border-box;
-	position: relative;
 	z-index: 2;
-}
-
-h1,h2 {
-	position: relative;
-	z-index: 10;
 }
 
 h1{
 	font-family: var(--font-1);
-	font-size: var(--size-1);
+	font-size: var(--size-2);
 	font-weight: 600;
 	margin: calc(var(--base-size));
+	position: relative;
+	z-index: 10;
 	animation: flicker 1.5s infinite alternate;
 }
 
@@ -125,12 +117,15 @@ h1{
 
   /* link to fancy neon code*/
   /*https://css-tricks.com/how-to-create-neon-text-with-css/*/
+  /* This helped me by targeting the exact text line and applying layers of text shadowing to create a glow effect*/
 
 h2{
 	font-family: var(--font-1);
-	font-size: var(--base-size);
+	font-size: var(--size-1);
 	font-weight: 400;
 	margin: calc(var(--base-size));
+	position: relative;
+	z-index: 10;
 }
 
 .neon2{
@@ -146,29 +141,75 @@ h2{
 			0 0 151px var(--white);
 }
 
-/* Grid Block Styles */
 h3{
+	font-family: var(--font-1);
+	font-size: var(--base-size);
+	font-weight: 400;
+	color: var(--gold);
+	text-align: center;
+}
+
+p{
 	font-family: var(--font-1);
 	font-size: var(--base-size);
 	font-weight: 300;
 	color: var(--gold);
+	text-align: center;
 }
-.blocks{
+
+/*Navigation*/
+nav{
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+}
+
+/* Modal Button Styles */
+button {
+	outline: none;
+	font-family: var(--font-1);
+	font-size: var(--base-size);
+	font-weight: 300;
+	background-color: var(--blue);
+	text-align: center;
+	width: 70px;
+	height: 30px;
+	border: 0px;
+	padding: 0px;
+	margin: calc(.5*var(--base-size));
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.nav-button{
+	color: var(--white);
+		text-shadow:
+			0 0 7px var(--white),
+			0 0 10px var(--white),
+			0 0 21px var(--white),
+			0 0 42px var(--white),
+			0 0 82px var(--white),
+			0 0 92px var(--white),
+			0 0 102px var(--white),
+			0 0 151px var(--white);
+}
+
+/* Grid Block Styles */
+.blocks {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+	grid-template-columns: repeat(auto-fill, minmax (300px, 1fr)); 
 	gap: var(--base-size); 
 	padding: var(--base-size);
 	place-content: center; 
-	justify-content: center;
 	position: relative;
 	z-index: 3;
 }
 
-#channel-blocks{
+.blocks li{
 	max-width: 100%;
 	background-color: var(--green);
-	padding: var(--base-size);
 	border: 1px var(--teal) solid;
+	padding: var(--base-size);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -178,26 +219,168 @@ h3{
 	z-index: 3;
 }
 
+.blocks li:hover {
+	  background-color: var(--black);
+}
 
-#channel-blocks li img,
-#channel-blocks li video,
-#channel-blocks li iframe {
+.modal{
+	color: var(--teal);
+	background-color: var(--green);
+	padding: var(--size-1);
+	border: 1px var(--teal) solid;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1000;
+	width: 300px;
+	text-align: center;
+	img{
+		max-width: 80%; 
+		max-height: 400px;
+		object-fit: contain;
+		border: 1px var(--teal) solid;
+		transition: filter 0.3s ease-in-out; 
+	}
+}
+
+.modal img:hover{
+	color: var(--gold); 
+}
+
+.audio-block{
+	.modal{
+		img{
+			filter: none;
+		}
+	}
+}
+
+iframe {
+	transition: filter 0.3s ease-in-out; 
+}
+
+iframe:hover {
+	color: var(--gold);
+}
+
+.modal-contents{
+	display: flex;
+	justify-content: center;
+	align-items: center; 
+	flex-direction: column;
+	height: 100%;
+}
+
+.modal h2 {
+	font-size: var(--size-1);
+	color: var(--gold);
+	padding-bottom: calc(var(--size-1)*.5);
+	padding-top: calc(var(--size-1)*.5);
+}
+
+.modal h3 {
+	font-size: var(--base-size);
+	padding-bottom: calc(var(--base-size)*.5);
+}
+
+#just-text {
+	font-size: var(--base-size);
+	display: -webkit-box;
+	-webkit-line-clamp: 10; 
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.divider-line{
+	height: 1px;
+	width: 100%;
+	background-color: var(--color-light);
+	margin: var(--size-1) 0;
+}
+
+.modal-link{
+	font-family: var(--font-1);
+	padding: var(--size-1);
+	border: 1px var(--color-light) solid;
+	text-transform: uppercase;
+	background-color: rgba(0, 0, 0, 0.75);
+	position: absolute;
+	bottom: -90px;
+	left: 0;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.modal-link:hover{
+	background-color: var(--blue);
+}
+
+.modal audio {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: var(--size-2);
+}
+
+.pdf-description{
+	color: var(--beige);
+}
+
+::backdrop{
+	background-color: var(--blue);
+	backdrop-filter: blur(12px);
+}
+
+body:has(dialog[open]) {
+	overflow: hidden;
+}
+
+iframe {
+	width: 100%;
+	height: 300px; 
+}
+
+.exit{
+	border-left: 1px var(--color-light) solid;
+	border-bottom: 1px var(--color-light) solid;
+	margin-bottom: var(--size-1);
+	width: var(--size-2);
+	height: var(--size-2);
+	display: inline-flex; 
+	align-items: center;
+	justify-content: center;
+	position: absolute;	
+	top: 0px;
+	right: 0px;
+	z-index: 1000;
+}
+
+.exit:hover {
+	background-color: var(--color-light);
+	color: var(--color-dark);
+}
+
+button{
+	cursor: pointer;
+}
+/*#channel-blocks .image-block, .iframe, .link, .pdf-block, .youtube {
 	width: 100%;
 	height: auto;
 	object-fit: cover;
+	overflow: hidden;
 	filter: blur(10px);
 	transition: filter 0.3s ease;
 }
 
-#channel-blocks li.audio-block audio,
-#channel-blocks li.video-block video {
+#channel-blocks .audio-block, .video-block {
 	filter: none;
-}
+}*/
 
-.blocks li:hover img,
-.blocks li:hover video,
-.blocks li:hover iframe,
-.blocks li:hover audio {
+#channel-blocks:hover {
 	filter:blur(0);
 }
 
@@ -205,17 +388,14 @@ h3{
 	color: var(--gold);
 	padding-top: var(--base-size);
 	flex-grow: 1;
+	text-align: left;
 }
 
 .link{
-	color: var(--gold)
-}
-
-.text-block {
 	color: var(--gold);
 }
 
-.audio-block audio {
+.audio-block {
 	width: 100%;
 	max-width: 300px;
 	height: auto;
@@ -234,15 +414,58 @@ h3{
 	height: 100%;
 }
 
+/* Filter show and hide section start */
+.show-video li {
+	display: none;
+}
+
+.show-video li.video-block {
+	display: block;
+}
+
+.show-image li {
+	display: none;
+}
+
+.show-image li.image-block {
+	display: block;
+}
+
+.show-audio li {
+	display: none;
+}
+
+.show-audio li.audio-block {
+	display: block;
+}
+
+.show-link li {
+	display: none;
+}
+
+.show-text li {
+	display: none;
+}
+
+.show-text li.text-block {
+	display: block;
+}
+
+.show-link li.link-block {
+	display: block;
+}
+
 /*Footer*/
 
 footer{
-	background-color: var(--beige);
+	background-color: var(--blue);
 	text-align: left;
 	display: flex;
 	justify-content: space-between;
 	margin-top: 40px;
 	padding-left: 20px;
+	position: relative;
+	z-index: 10;
 }
 
 footer p{
@@ -278,7 +501,7 @@ a{
 
 @media (min-width: 1024px){
 	.blocks{
-		grid-template-columns: repeat(3,1fr);
+		grid-template-columns: repeat(5,1fr);
 	}
 
 	h1{
